@@ -1,20 +1,33 @@
 import React, { useState } from "react";
 import { Container, Col, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import styled from "styled-components";
 
+let IMG = styled.img`
+  width: 100%;
+  margin: 0 auto;
+`;
+let H4 = styled.h4`
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+`;
+let P = styled.p`
+  padding: 10px;
+  font-size: 20px;
+  text-align: center;
+`;
 function Detail(props) {
   let { id } = useParams();
-  let [item, setItem] = useState(
-    props.product.filter((element) => element.id === { id })
-  );
-  console.log(props.product.find((element) => element.id === 1));
+  let item = props.product.find((a) => a.id == id);
+
   return (
     <Container>
       <Row>
         <Col sm>
-          <img src={{ item }.img} width="200px" />
-          <h4>{item.title}</h4>
-          <p>{item.price}</p>
+          <IMG src={item.img} width="200px" />
+          <H4>{item.title}</H4>
+          <P>{item.price}</P>
         </Col>
       </Row>
     </Container>

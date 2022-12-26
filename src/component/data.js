@@ -14,7 +14,6 @@ let data = [
     content: "Born in Seoul",
     price: "$459.43",
   },
-
   {
     id: 2,
     img: "/img/14.jpg",
