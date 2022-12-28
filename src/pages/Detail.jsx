@@ -17,20 +17,34 @@ let P = styled.p`
   font-size: 20px;
   text-align: center;
 `;
+let Box = styled.div`
+  width: 100%;
+  height: 100px;
+  background: rgba(0, 0, 0, 0.2);
+  text-align: center;
+`;
+
 function Detail(props) {
   let { id } = useParams();
-  let item = props.product.find((a) => a.id == id);
+  let [pop, setPop] = useState(true);
 
+  let item = props.product.find((a) => a.id == id);
+  setTimeout(() => {
+    setPop(false);
+  }, 2000);
   return (
-    <Container>
-      <Row>
-        <Col sm>
-          <IMG src={item.img} width="200px" />
-          <H4>{item.title}</H4>
-          <P>{item.price}</P>
-        </Col>
-      </Row>
-    </Container>
+    <>
+      {pop === true ? <Box>2초이내 구매시 할인</Box> : null}
+      <Container>
+        <Row>
+          <Col sm>
+            <IMG src={item.img} width="200px" />
+            <H4>{item.title}</H4>
+            <P>{item.price}</P>
+          </Col>
+        </Row>
+      </Container>
+    </>
   );
 }
 
