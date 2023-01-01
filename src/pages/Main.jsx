@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Col, Row } from "react-bootstrap";
+
 function Main(props) {
   return (
     <>
@@ -11,6 +12,7 @@ function Main(props) {
           })}
         </Row>
       </Container>
+
     </>
   );
 }
@@ -25,4 +27,5 @@ function Product(props) {
     </>
   );
 }
+
 export default Main;

@@ -10,9 +10,11 @@ import About from "./pages/About";
 import Detail from "./pages/Detail";
 import Collection from "./pages/Collection";
 import { useState } from "react";
+import axios from 'axios';
+
 
 function App() {
-  let [product] = useState(data);
+  let [product,useProduct] = useState(data);
 
   return (
     <div className="App">
@@ -43,8 +45,27 @@ function App() {
         <Route path="/Shop" element={<Shop />}></Route>
         <Route path="/Collection" element={<Collection />}></Route>
       </Routes>
+      <button onClick={()=>{
+        console.log('hay');
+        <MoreProduct product={product} useProduct={useProduct}></MoreProduct>
+      }}>더보기</button>
     </div>
   );
-}
 
+}
+function MoreProduct(props) {
+  return(
+    <>
+      <h1>hay</h1>
+      {axios.get('https://codingapple1.github.io/shop/data2.json')
+      .then((result)=>{
+        let copy = [...props.product, ...result.data]
+        useProduct(copy)
+      })
+      .catch(()=> 
+      {console.log('실패함')})
+      }
+    </>
+  );
+}
 export default App;
