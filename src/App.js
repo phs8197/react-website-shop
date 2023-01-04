@@ -47,25 +47,19 @@ function App() {
       </Routes>
       <button onClick={()=>{
         console.log('hay');
-        <MoreProduct product={product} useProduct={useProduct}></MoreProduct>
+        {axios.get('https://codingapple1.github.io/shop/data3.json')
+        .then((result)=>{
+          let copy = [...product, ...result.data]
+          useProduct(copy)
+        })
+        .catch(()=> 
+        {console.log('실패함')})
+        }
       }}>더보기</button>
     </div>
   );
 
 }
-function MoreProduct(props) {
-  return(
-    <>
-      <h1>hay</h1>
-      {axios.get('https://codingapple1.github.io/shop/data2.json')
-      .then((result)=>{
-        let copy = [...props.product, ...result.data]
-        useProduct(copy)
-      })
-      .catch(()=> 
-      {console.log('실패함')})
-      }
-    </>
-  );
-}
+
+
 export default App;
